@@ -7,8 +7,8 @@ const videoSchema = mongoose.Schema({
         ref: 'User'
     },
     title: {
-        type:Schema.Types.ObjectId,
-        ref:'Book',
+        type:String,
+        //ref:'Book',
         maxlength:50,
     },
     description: {
