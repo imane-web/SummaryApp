@@ -38,10 +38,9 @@ input.error {
   margin-top: -12px;
 }
 
-
 .imane {
-    background-image: url(../../../assets/images/ENSIAS3.jpg);
-    background-size: cover;
-    background-position: center center;
-    position: relative;
+  background-image: url(./assets/images/ENSIAS3.jpg);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
