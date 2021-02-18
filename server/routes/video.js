@@ -96,10 +96,10 @@ router.get("/getVideos", (req, res) => {
 
 router.post("/getVideos", (req, res) => {
 
-    console.log(req.body.filters)
+    //console.log(req.body.filters)
     let findArgs = {};
     let term = req.body.searchTerm;
-
+    console.log(term)
     for (let key in req.body.filters) {
 
         if (req.body.filters[key].length > 0) {
@@ -111,7 +111,7 @@ router.post("/getVideos", (req, res) => {
         }
     }
 
-    console.log(findArgs)
+    //console.log(findArgs)
 
 
     //console.log("heloooooo"+findArgs.categories)

@@ -120,7 +120,7 @@ function LandingPage() {
 
         
     }
-    
+
     /* search */
 
     const updateSearchTerms = (newSearchTerm) => {
@@ -134,7 +134,15 @@ function LandingPage() {
        
         setSearchTerms(newSearchTerm)
 
-        getVideos(variables)
+        axios.post('/api/video/getVideos',variables) // liaison backend et passage de parametres
+            .then(response => {
+                if (response.data.success) {
+                //console.log(response.data.videos)
+                    setVideos(response.data.videos)
+                } else {
+                    alert('Failed to get Videos')
+                }
+            })
     }
 
 

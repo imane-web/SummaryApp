@@ -13,7 +13,7 @@ function LeftMenu(props) {
       <a href="/subscription">Subscription</a>
     </Menu.Item>
     <Menu.Item>
-      <ResearchSummary/>
+
     </Menu.Item>
   </Menu>
   )

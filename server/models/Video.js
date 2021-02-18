@@ -35,6 +35,16 @@ const videoSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
+videoSchema.index({
+    title: 'text',
+    description: 'text',
+},{
+    weights:{
+        name: 5,
+        description: 2,
+    }
+})
+
 
 const Video = mongoose.model('Video', videoSchema);
 
