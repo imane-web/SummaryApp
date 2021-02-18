@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import SearchBar from './searchBar';
+import ResearchSummary from '../../ResearchSummary/ResearchSummary';
 
 
 function LeftMenu(props) {
@@ -13,7 +13,7 @@ function LeftMenu(props) {
       <a href="/subscription">Subscription</a>
     </Menu.Item>
     <Menu.Item>
-      <SearchBar/>
+      <ResearchSummary/>
     </Menu.Item>
   </Menu>
   )

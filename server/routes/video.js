@@ -81,20 +81,72 @@ router.post("/thumbnail", (req, res) => {
 
 router.get("/getVideos", (req, res) => {
 
-    Video.find()
+        Video.find()
         .populate('writer')
         .exec((err, videos) => {
             if(err) return res.status(400).send(err);
             res.status(200).json({ success: true, videos })
-        })
+        }) 
+    
 
 });
 
 
 
-router.post("/uploadVideo", (req, res) => {
 
+router.post("/getVideos", (req, res) => {
+
+    console.log(req.body.filters)
+    let findArgs = {};
+    let term = req.body.searchTerm;
+
+    for (let key in req.body.filters) {
+
+        if (req.body.filters[key].length > 0) {
+            if (key === "other") {
+                
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+
+    console.log(findArgs)
+
+
+    //console.log("heloooooo"+findArgs.categories)
+
+    if (term) {
+      
+    Video.find(findArgs)
+        .find({ $text: { $search: term } })
+        .populate('writer')
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, videos })
+        }) 
+    }
+
+    else {
+        Video.find(findArgs)
+        .populate('writer')
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success: true, videos })
+        }) 
+    }
+    
+
+});
+
+
+
+
+router.post("/uploadVideo", (req, res) => {
+    console.log(req.body.category)
     const video = new Video(req.body)
+    console.log(video)
+
 
     video.save((err, video) => {
         if(err) return res.status(400).json({ success: false, err })

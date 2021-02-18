@@ -1,29 +1,55 @@
 import React, { useEffect, useState } from 'react'
 import { FaCode } from "react-icons/fa";
 import { Card, Avatar, Col, Typography, Row } from 'antd';
+import CheckBox from './Sections/CheckBox';
+//import category from './Sections/categories';
 import axios from 'axios';
 import moment from 'moment';
+import SearchFeature from "./Sections/SearchFeature"
+
 const { Title } = Typography;
 const { Meta } = Card;
+
+
+
+
 function LandingPage() {
 
     const [Videos, setVideos] = useState([])
+    
+    const [SearchTerms, setSearchTerms] = useState("")
+    const [Var, setVar]= useState()
+
+    const [Filters, setFilters] = useState({
+        categories: [],
+        other: []
+    })
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        // s'effectue en temps reel tent que les conditions [] verifiés
+        const variables = {
+
+            filters:Filters
+            
+        }
+        //setVar(Filters);
+
+        getVideos(variables)
+    }, [])
+
+
+    const getVideos = (variables1) => {
+        axios.get('/api/video/getVideos', variables1) // liaison backend et passage de parametres
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.videos)
+                    console.log(variables1)
+                //console.log(response.data.videos)
                     setVideos(response.data.videos)
                 } else {
                     alert('Failed to get Videos')
                 }
             })
-    }, [])
-
-
-
-
+    }
 
     const renderCards = Videos.map((video, index) => {
 
@@ -56,16 +82,97 @@ function LandingPage() {
 
     })
 
+    /* filter */
+
+    const showFilteredResults = (filters) => {
+
+        const variables1 = {
+
+            filters: filters
+
+        }
+
+           axios.post('/api/video/getVideos',variables1) // liaison backend et passage de parametres
+            .then(response => {
+                if (response.data.success) {
+                //console.log(response.data.videos)
+                    setVideos(response.data.videos)
+                } else {
+                    alert('Failed to get Videos')
+                }
+            })
+
+    }
+
+
+    const handleFilters = (filters, category) => {
+        console.log(filters)
+        const newFilters = { ...Filters }
+
+        newFilters[category] = filters
+
+        
+        
+        showFilteredResults(newFilters)
+        setFilters(newFilters)
+        //console.log(Filters)
+        //console.log(newFilters)
+
+        
+    }
+    
+    /* search */
+
+    const updateSearchTerms = (newSearchTerm) => {
+
+        const variables = {
+            
+            filters: Filters,
+            searchTerm: newSearchTerm
+        }
+
+       
+        setSearchTerms(newSearchTerm)
+
+        getVideos(variables)
+    }
 
 
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
-            <Title level={2} > Recommended </Title>
-            <hr />
+           
+            {/* Filter  */}
 
+            <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24} >
+                    <CheckBox
+                        handleFilters={filters => handleFilters(filters, "categories")} 
+                    />
+                </Col>
+                <Col lg={12} xs={24}>
+                    {/* Search  */}
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
+
+                    <SearchFeature
+                    refreshFunction={updateSearchTerms}
+                    />
+
+                    </div>
+                </Col>
+            </Row>
+
+            
+
+            <Title level={2} > 
+            Recommended
+             </Title>
+             
+            <hr />
+            
             <Row gutter={16}>
                 {renderCards}
             </Row>
+            
         </div>
     )
 }

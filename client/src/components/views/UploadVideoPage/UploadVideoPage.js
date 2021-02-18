@@ -14,13 +14,13 @@ const Private = [
 
 const Catogory = [
     { value: 0, label: "Langages" },
-    { value: 0, label: "AI" },
-    { value: 0, label: "Embeded system" },
-    { value: 0, label: "Data science" },
-    { value: 0, label: "framewoork" },
-    { value: 0, label: "design" },
-    { value: 0, label: "web development " },
-    { value: 0, label: "mobile developpemnt" },
+    { value: 1, label: "AI" },
+    { value: 2, label: "Embeded system" },
+    { value: 3, label: "Data science" },
+    { value: 4, label: "framewoork" },
+    { value: 5, label: "design" },
+    { value: 6, label: "web development " },
+    { value: 7, label: "mobile developpemnt" },
 
 
 ]
@@ -75,7 +75,7 @@ function UploadVideoPage(props) {
             description: Description,
             privacy: privacy,
             filePath: FilePath,
-            category: Categories,
+            categories: Categories,
             duration: Duration,
             thumbnail: Thumbnail
         }
@@ -134,7 +134,7 @@ function UploadVideoPage(props) {
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <Title level={2} > Upload Video</Title>
+                <Title level={2} > Upload your summary</Title>
             </div>
 
             <Form onSubmit={onSubmit}>
@@ -184,7 +184,7 @@ function UploadVideoPage(props) {
 
                 <select onChange={handleChangeTwo}>
                     {Catogory.map((item, index) => (
-                        <option key={index} value={item.label}>{item.label}</option>
+                        <option key={index} value={item.value}>{item.label}</option>
                     ))}
                 </select>
                 <br /><br />
