@@ -4,7 +4,7 @@ import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
 
 import './Sections/Navbar.css';
-const Logo = require('../../../assets/images/open-book.png');
+const Logo = require('../../../assets/images/logo.png');
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -20,7 +20,7 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <div className="menu__logo">
-        <a href="/"><img src={Logo} alt="Logo" style={{ width: '50%', marginTop: '-10px' }} /></a>
+        <a href="/home"><img src={Logo} alt="Logo" style={{ width: '120px', marginTop: '-10px', height:'50px' }} /></a>
       </div>
       <div className="menu__container">
         <div className="menu_left">

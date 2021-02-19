@@ -53,7 +53,7 @@ function LoginPage(props) {
                 } else {
                   localStorage.removeItem('rememberMe');
                 }
-                props.history.push("/");
+                props.history.push("/home");
               } else {
                 setFormErrorMessage('Check out your Account or Password again')
               }
@@ -136,7 +136,7 @@ function LoginPage(props) {
                     Log in
                 </Button>
                 </div>
-                Or <a href="/register">register now!</a>
+               
               </Form.Item>
             </form>
           </div>

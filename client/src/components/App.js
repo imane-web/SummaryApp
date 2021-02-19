@@ -16,8 +16,8 @@ function App() {
       <NavBar />
       <div className="main" style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
-          <Route exact path="/" component={Auth(LandingPage, true)} />
-          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/home" component={Auth(LandingPage, true)} />
+          <Route exact path="/" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
           <Route exact path="/video/:videoId" component={Auth(DetailVideoPage, null)} />

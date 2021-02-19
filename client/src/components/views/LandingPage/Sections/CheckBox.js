@@ -6,7 +6,7 @@ const { Panel } = Collapse
 const categories = [
     {
         "_id": 0,
-        "name": "Langages"
+        "name": "design"
     },
     {
         "_id": 1,
@@ -22,11 +22,11 @@ const categories = [
     },
     {
         "_id": 4,
-        "name": "framewoorks"
+        "name": "frameworks"
     },
     {
         "_id": 5,
-        "name": "design"
+        "name": "langages"
     },
     {
         "_id": 6,
@@ -35,7 +35,12 @@ const categories = [
     {
         "_id": 7,
         "name": "mobile developpemnt"
+    },
+    {
+        "_id": 8,
+        "name": "cyber security"
     }
+    
     
 ]
 

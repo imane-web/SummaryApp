@@ -143,11 +143,10 @@ router.post("/getVideos", (req, res) => {
 
 
 router.post("/uploadVideo", (req, res) => {
-    console.log(req.body.category)
+    //console.log(req.body.category)
     const video = new Video(req.body)
+    
     console.log(video)
-
-
     video.save((err, video) => {
         if(err) return res.status(400).json({ success: false, err })
         return res.status(200).json({

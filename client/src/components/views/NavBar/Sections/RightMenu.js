@@ -13,7 +13,7 @@ function RightMenu(props) {
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
-        props.history.push("/login");
+        props.history.push("/");
       } else {
         alert('Log Out Failed')
       }
@@ -26,9 +26,9 @@ function RightMenu(props) {
         <Menu.Item key="mail">
           <a href="/login">Signin</a>
         </Menu.Item>
-        <Menu.Item key="app">
+        {/*<Menu.Item key="app">
           <a href="/register">Signup</a>
-        </Menu.Item>
+    </Menu.Item>*/}
       </Menu>
     )
   } else {

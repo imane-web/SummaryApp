@@ -9,9 +9,12 @@ const videoSchema = mongoose.Schema({
     title: {
         type:String,
         //ref:'Book',
-        maxlength:50,
+        maxlength:100,
     },
     description: {
+        type: String,
+    },
+    author:{
         type: String,
     },
     privacy: {

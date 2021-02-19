@@ -13,14 +13,15 @@ const Private = [
 ]
 
 const Catogory = [
-    { value: 0, label: "Langages" },
+    { value: 0, label: "design" },
     { value: 1, label: "AI" },
     { value: 2, label: "Embeded system" },
     { value: 3, label: "Data science" },
-    { value: 4, label: "framewoork" },
-    { value: 5, label: "design" },
+    { value: 4, label: "frameworks" },
+    { value: 5, label: "langages" },
     { value: 6, label: "web development " },
     { value: 7, label: "mobile developpemnt" },
+    { value: 8, label: "cyber security" },
 
 
 ]
@@ -30,6 +31,8 @@ function UploadVideoPage(props) {
 
     const [title, setTitle] = useState("");
     const [Description, setDescription] = useState("");
+    const [Author, setAuthor] = useState("");
+
     const [privacy, setPrivacy] = useState(0)
     const [Categories, setCategories] = useState("Film & Animation")
     const [FilePath, setFilePath] = useState("")
@@ -45,6 +48,9 @@ function UploadVideoPage(props) {
         console.log(event.currentTarget.value)
 
         setDescription(event.currentTarget.value)
+    }
+    const handleChangeAuthor = (event) =>{
+        setAuthor(event.currentTarget.value)
     }
 
     const handleChangeOne = (event) => {
@@ -73,6 +79,7 @@ function UploadVideoPage(props) {
             writer: user.userData._id,
             title: title,
             description: Description,
+            author: Author,
             privacy: privacy,
             filePath: FilePath,
             categories: Categories,
@@ -84,7 +91,7 @@ function UploadVideoPage(props) {
             .then(response => {
                 if (response.data.success) {
                     alert('video Uploaded Successfully')
-                    props.history.push('/')
+                    props.history.push('/home')
                 } else {
                     alert('Failed to upload video')
                 }
@@ -132,7 +139,7 @@ function UploadVideoPage(props) {
     }
 
     return (
-        <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+        <div  style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <Title level={2} > Upload your summary</Title>
             </div>
@@ -162,10 +169,16 @@ function UploadVideoPage(props) {
                 </div>
 
                 <br /><br />
-                <label>Title</label>
+                <label>Book Title</label>
                 <Input
                     onChange={handleChangeTitle}
                     value={title}
+                />
+                <br /><br />
+                <label>Author</label>
+                <Input
+                    onChange={handleChangeAuthor}
+                    value={Author}
                 />
                 <br /><br />
                 <label>Description</label>
@@ -174,14 +187,14 @@ function UploadVideoPage(props) {
                     value={Description}
                 />
                 <br /><br />
-
-                <select onChange={handleChangeOne}>
+                {/*<select onChange={handleChangeOne}>
                     {Private.map((item, index) => (
                         <option key={index} value={item.value}>{item.label}</option>
                     ))}
                 </select>
-                <br /><br />
-
+                <br /><br />*/ }
+              
+                <br />
                 <select onChange={handleChangeTwo}>
                     {Catogory.map((item, index) => (
                         <option key={index} value={item.value}>{item.label}</option>
